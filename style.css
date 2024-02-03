@@ -1,0 +1,41 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+    background-color: #a54c79;
+}
+
+#content {
+    text-align: center;
+    color: white;
+    font-size: 65px;
+}
+
+#question {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: white
+}
+
+button {
+    padding: 15px 30px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.yes {
+    background-color: #4CAF50; /* A shade of green */
+    color: white;
+}
+
+.no {
+    background-color: #F44336; /* A shade of red */
+    color: white;
+}
