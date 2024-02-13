@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("yesButton").addEventListener("click", function() {
         document.body.innerHTML = `
             <div id="datePickerContainer">
-                <label for="datePicker">Choose a date:</label>
+                <label for="datePicker">choose a date :):</label>
                 <input type="date" id="datePicker">
                 <button id="nextButton">Next</button>
             </div>
@@ -19,8 +19,8 @@ document.addEventListener("DOMContentLoaded", function() {
             if (date !== '') {
                 document.body.innerHTML = `
                     <div id="foodChoiceContainer">
-                        <label for="foodChoice">what do you wanna eat</label>
-                        <input type="text" id="foodChoice" name="foodChoice"><br><br>
+                        <label for="foodChoice">its a dinner date sooo... what culture?</label>
+                        <input type="text" id="foodChoice" name="foodChoice" placeholder="indian? mexican? chinese? thai?"><br><br>
                         <button id="submitChoice">Submit</button>
                     </div>
                 `;
@@ -35,10 +35,11 @@ document.addEventListener("DOMContentLoaded", function() {
                     document.body.innerHTML = `
                         <div id="finalScreen">
                             <p>soooo... issa date?:)</p>
-                            <p>Date: ${date}</p>
-                            <p>Food: ${foodChoice}</p>
-                            <p>Wine: Included :)</p>
-                            <p> see you then :)</p>
+                            <p>date: ${date}</p>
+                            <p>food culture: ${foodChoice}</p>
+                            <p>wine: included :)</p>
+                            <p>see you then :)</p>
+                            <p><b>snap me this screen bc i cant see your choices<b/></p>
                         </div>
                     `;
                 });
