@@ -8,10 +8,22 @@ body, html {
     background-color: #a54c79;
 }
 
+#datePickerContainer{
+    text-align: center;
+    color: white;
+    font-size: medium;
+}
+
+#foodChoiceContainer{ 
+    text-align: center;
+    color: white;
+    font-size: medium;
+}
+
 #heading{
     text-align: center;
     color: white;
-    font-size: small;
+    font-size: medium;
     margin-bottom: 30px;
 }
 
