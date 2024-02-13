@@ -20,12 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 document.body.innerHTML = `
                     <div id="foodChoiceContainer">
                         <label for="foodChoice">what do you wanna eat</label>
-                        <select id="foodChoice">
-                            <option value="chinese">Chinese</option>
-                            <option value="mexican">Mexican</option>
-                            <option value="indian">Indian</option>
-                            <option value="Anything">Anything</option>
-                        </select>
+                        <input type="text" id="foodChoice" name="foodChoice"><br><br>
                         <button id="submitChoice">Submit</button>
                     </div>
                 `;
