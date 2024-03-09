@@ -10,6 +10,7 @@ function redirectTo(pageName) {
         window.location.href = '#resume';
         break;
       default:
+        //test
         console.log('Page not found.');
     }
   }
