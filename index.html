@@ -1,26 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>a date</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="content">
-        <p id="heading">i know we havent talked, but... platonically <b>(or not :))</b></p>
-        <p id="question">do you want to go out on a date?</p>
-        <button id="yesButton" class="yes">Yes</button>
-        <button id="noButton" class="no">No</button>
+<div id ="phone">
+  <div id="home-screen">
+    <div class="info-box">
+      <h2>About me:</h2>
+      <p>My name is Yash Patel</p>
+      <p>yadayada</p>
     </div>
-    <div id="datePickerContainer" style="display:none;">
-        <label for="datePicker">Choose a date:</label>
-        <input type="date" id="datePicker">
+    <div class="apps-container">
+      <div class="app" onclick="redirectTo('about')">
+        <div class="app-icon"></div>
+        <p>About Me</p>
       </div>
-      <div id="foodChoiceContainer" style="display:none;">
-        <label for="foodChoice">its a dinner date sooo... what culture?</label>
-        <input type="text" id="foodChoice" name="foodChoice" placeholder="indian? mexican? chinese? thai?"><br><br>
+      <div class="app" onclick="redirectTo('github')">
+        <div class="app-icon"></div>
+        <p>GitHub</p>
       </div>
-    <script src="script.js"></script>
+      <div class="app" onclick="redirectTo('resume')">
+        <div class="app-icon"></div>
+        <p>Resume</p>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="script.js"></script>
 </body>
 </html>
