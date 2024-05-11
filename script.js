@@ -4,7 +4,7 @@ function redirectTo(pageName) {
         window.location.href = '#about';
         break;
       case 'github':
-        window.location.href = 'https://github.com/Yosh145';
+        window.location.href = 'https://github.com/';
         break;
       case 'resume':
         window.location.href = '#resume';
