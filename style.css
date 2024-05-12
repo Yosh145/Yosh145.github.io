@@ -21,7 +21,7 @@ body, html {
 
   .apps-container {
     display: flex;
-    gap: 40px;
+    gap: 10px;
     padding: 20px;
   }
 
@@ -64,11 +64,7 @@ body, html {
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   }
   
-  @media (max-width: 768px) {
-    .apps-container {
-      grid-template-columns: 1fr; 
-    }
-    
+  @media (min-width: 10px) {
     .app {
       width: 100%; 
     }
