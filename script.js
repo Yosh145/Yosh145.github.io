@@ -4,13 +4,13 @@ function redirectTo(pageName) {
       window.location.href = '#about';
       break;
     case 'github':
-      window.location.href = 'https://github.com';
+      window.location.href = 'https://github.com/yosh145';
       break;
     case 'resume':
       window.location.href = '#resume';
       break;
     case 'decoder':
-      window.location.href = '#base64.html'
+      window.location.href = '/base64'
     default:
       console.log('Page not found.');
   }
