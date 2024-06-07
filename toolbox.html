@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toolbox</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="phone">
+  <div id="home-screen">
+    <div class="info-box">
+      <div class="tab-container">
+        <div class="tabs">
+          <button class="tablinks" onclick="openTab(event, 'Base64')">Base64 Decoder</button>
+          <button class="tablinks" onclick="openTab(event, 'URL')">URL Encoder/Decoder</button>
+          <button class="tablinks" onclick="openTab(event, 'Hex')">Hex Encoder/Decoder</button>
+          <button class="tablinks" onclick="openTab(event, 'Morse')">Morse Code</button>
+          <button class="tablinks" onclick="openTab(event, 'HTMLEntity')">HTML Entity Encoder/Decoder</button>
+          <button class="tablinks" onclick="openTab(event, 'Binary')">Binary Encoder/Decoder</button>
+          <button class="tablinks" onclick="openTab(event, 'QRCode')">QR Code Generator</button>
+        </div>
+      </div>
+
+      <div id="Base64" class="tabcontent">
+        <h2>Base64 Decoder</h2>
+        <input type="text" id="base64-input" placeholder="Enter Base64 string">
+        <button onclick="decodeBase64()">Decode</button>
+        <p id="decoded-output"></p>
+      </div>
+
+      <div id="URL" class="tabcontent">
+        <h2>URL Encoder/Decoder</h2>
+        <input type="text" id="url-input" placeholder="Enter URL string">
+        <button onclick="encodeURL()">Encode</button>
+        <button onclick="decodeURL()">Decode</button>
+        <p id="url-output"></p>
+      </div>
+
+      <div id="Hex" class="tabcontent">
+        <h2>Hex Encoder/Decoder</h2>
+        <input type="text" id="hex-input" placeholder="Enter text">
+        <button onclick="encodeHex()">Encode</button>
+        <button onclick="decodeHex()">Decode</button>
+        <p id="hex-output"></p>
+      </div>
+
+      <div id="Morse" class="tabcontent">
+        <h2>Morse Code</h2>
+        <input type="text" id="morse-input" placeholder="Enter text">
+        <button onclick="encodeMorse()">Encode</button>
+        <button onclick="decodeMorse()">Decode</button>
+        <p id="morse-output"></p>
+      </div>
+
+      <div id="HTMLEntity" class="tabcontent">
+        <h2>HTML Entity Encoder/Decoder</h2>
+        <input type="text" id="html-input" placeholder="Enter text">
+        <button onclick="encodeHTML()">Encode</button>
+        <button onclick="decodeHTML()">Decode</button>
+        <p id="html-output"></p>
+      </div>
+
+      <div id="Binary" class="tabcontent">
+        <h2>Binary Encoder/Decoder</h2>
+        <input type="text" id="binary-input" placeholder="Enter text">
+        <button onclick="encodeBinary()">Encode</button>
+        <button onclick="decodeBinary()">Decode</button>
+        <p id="binary-output"></p>
+      </div>
+
+      <div id="QRCode" class="tabcontent">
+        <h2>QR Code Generator</h2>
+        <input type="text" id="qr-input" placeholder="Enter text">
+        <button onclick="generateQRCode()">Generate</button>
+        <div id="qr-output"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
