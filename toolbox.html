@@ -1,84 +1,464 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<!--    portfolio on a tablet         -->
+<!--  by yash p. and gegel gemmani    -->
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Toolbox</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toolbox</title>
+  <style>
+    /* style.css */
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background-color: #141414;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    #tablet {
+      border: 16px solid black;
+      border-radius: 40px;
+      width: 800px;
+      height: 550px;
+      max-width: 95%;
+      margin: auto;
+      background: #111;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #screen {
+      width: 100%;
+      height: 100%;
+      background-color: #141414;
+      border-radius: 24px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #status-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 10px 20px;
+      text-align: center;
+      color: #eaeaea;
+      background-color: rgba(36, 36, 36, 0.7);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      font-weight: 600;
+      font-size: 0.9em;
+      z-index: 10;
+      box-sizing: border-box;
+    }
+
+    /* toolbox styling */
+    #toolbox-container {
+      padding-top: 45px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      background-color: #242424;
+      padding: 8px;
+      border-bottom: 1px solid #3a3a3a;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tabs button {
+      background-color: transparent;
+      border: none;
+      color: #bababa;
+      padding: 10px 15px;
+      cursor: pointer;
+      transition: all 0.3s;
+      border-radius: 8px;
+      font-size: 0.9em;
+      font-weight: 500;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .tabs button:hover {
+      background-color: #3a3a3a;
+      color: #fff;
+    }
+
+    .tabs button.active {
+      background-color: #007aff;
+      color: #ffffff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .tabcontent {
+      display: none;
+      padding: 25px;
+      background-color: #1e1e1e;
+      color: #eaeaea;
+      flex-grow: 1;
+      overflow-y: auto;
+    }
+
+    .tabcontent h2 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      color: #ffffff;
+      border-bottom: 2px solid #3a3a3a;
+      padding-bottom: 10px;
+    }
+
+    .tabcontent input[type="text"],
+    .tabcontent input[type="number"],
+    .tabcontent textarea,
+    .tabcontent select {
+      width: calc(100% - 24px);
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #444;
+      background-color: #2a2a2a;
+      color: #eaeaea;
+      font-size: 1em;
+      box-sizing: border-box;
+    }
+
+    .tabcontent textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .tabcontent button {
+      padding: 10px 20px;
+      background-color: #007aff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1em;
+      font-weight: 500;
+      transition: background-color 0.2s;
+      margin-right: 10px;
+    }
+
+    .tabcontent button:hover {
+      background-color: #0056b3;
+    }
+
+    .tabcontent p,
+    .tabcontent pre {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #2a2a2a;
+      border: 1px solid #444;
+      border-radius: 8px;
+      min-height: 24px;
+      word-wrap: break-word;
+      color: #e0e0e0;
+      white-space: pre-wrap;
+    }
+
+    .counter-output span {
+      font-weight: bold;
+      color: #fff;
+    }
+
+
+    #home-bar {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150px;
+      height: 6px;
+      background-color: rgba(221, 221, 221, 0.4);
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.2s;
+      z-index: 110;
+    }
+
+    #home-bar:hover {
+      background-color: rgba(255, 255, 255, 0.7);
+    }
+  </style>
 </head>
+
 <body>
-<div id="phone">
-  <div id="home-screen">
-    <div class="info-box">
-      <div class="tab-container">
+  <div id="tablet">
+    <div id="screen">
+      <div id="status-bar">
+        <span id="time-display"></span>
+      </div>
+
+      <div id="toolbox-container">
         <div class="tabs">
-          <button class="tablinks" onclick="openTab(event, 'Base64')">Base64 Decoder</button>
-          <button class="tablinks" onclick="openTab(event, 'URL')">URL Encoder/Decoder</button>
-          <button class="tablinks" onclick="openTab(event, 'Hex')">Hex Encoder/Decoder</button>
-          <button class="tablinks" onclick="openTab(event, 'Morse')">Morse Code</button>
-          <button class="tablinks" onclick="openTab(event, 'HTMLEntity')">HTML Entity Encoder/Decoder</button>
-          <button class="tablinks" onclick="openTab(event, 'Binary')">Binary Encoder/Decoder</button>
-          <button class="tablinks" onclick="openTab(event, 'QRCode')">QR Code Generator</button>
+          <button class="tablinks" onclick="openTab(event, 'Base64')">Base64</button>
+          <button class="tablinks" onclick="openTab(event, 'URL')">URL</button>
+          <button class="tablinks" onclick="openTab(event, 'Hex')">Hex</button>
+          <button class="tablinks" onclick="openTab(event, 'Morse')">Morse</button>
+          <button class="tablinks" onclick="openTab(event, 'Binary')">Binary</button>
+          <!-- <button class="tablinks" onclick="openTab(event, 'Caesar')">Caesar Cipher</button> -->
+          <button class="tablinks" onclick="openTab(event, 'Hash')">Hash Generator</button>
+          <button class="tablinks" onclick="openTab(event, 'Counter')">Text Counter</button>
         </div>
-      </div>
 
-      <div id="Base64" class="tabcontent">
-        <h2>Base64 Decoder</h2>
-        <input type="text" id="base64-input" placeholder="Enter Base64 string">
-        <button onclick="decodeBase64()">Decode</button>
-        <p id="decoded-output"></p>
-      </div>
+        <div id="Base64" class="tabcontent">
+          <h2>Base64 Decoder</h2>
+          <input type="text" id="base64-input" placeholder="Enter Base64 string">
+          <button onclick="decodeBase64()">Decode</button>
+          <p id="decoded-output"></p>
+        </div>
 
-      <div id="URL" class="tabcontent">
-        <h2>URL Encoder/Decoder</h2>
-        <input type="text" id="url-input" placeholder="Enter URL string">
-        <button onclick="encodeURL()">Encode</button>
-        <button onclick="decodeURL()">Decode</button>
-        <p id="url-output"></p>
-      </div>
+        <div id="URL" class="tabcontent">
+          <h2>URL Encoder/Decoder</h2>
+          <input type="text" id="url-input" placeholder="Enter URL string">
+          <button onclick="encodeURL()">Encode</button>
+          <button onclick="decodeURL()">Decode</button>
+          <p id="url-output"></p>
+        </div>
 
-      <div id="Hex" class="tabcontent">
-        <h2>Hex Encoder/Decoder</h2>
-        <input type="text" id="hex-input" placeholder="Enter text">
-        <button onclick="encodeHex()">Encode</button>
-        <button onclick="decodeHex()">Decode</button>
-        <p id="hex-output"></p>
-      </div>
+        <div id="Hex" class="tabcontent">
+          <h2>Hex Encoder/Decoder</h2>
+          <input type="text" id="hex-input" placeholder="Enter text">
+          <button onclick="encodeHex()">Encode</button>
+          <button onclick="decodeHex()">Decode</button>
+          <p id="hex-output"></p>
+        </div>
 
-      <div id="Morse" class="tabcontent">
-        <h2>Morse Code</h2>
-        <input type="text" id="morse-input" placeholder="Enter text">
-        <button onclick="encodeMorse()">Encode</button>
-        <button onclick="decodeMorse()">Decode</button>
-        <p id="morse-output"></p>
-      </div>
+        <div id="Morse" class="tabcontent">
+          <h2>Morse Code Encoder/Decoder</h2>
+          <input type="text" id="morse-input" placeholder="Enter text">
+          <button onclick="encodeMorse()">Encode</button>
+          <button onclick="decodeMorse()">Decode</button>
+          <p id="morse-output"></p>
+        </div>
 
-      <div id="HTMLEntity" class="tabcontent">
-        <h2>HTML Entity Encoder/Decoder</h2>
-        <input type="text" id="html-input" placeholder="Enter text">
-        <button onclick="encodeHTML()">Encode</button>
-        <button onclick="decodeHTML()">Decode</button>
-        <p id="html-output"></p>
-      </div>
+        <div id="Binary" class="tabcontent">
+          <h2>Binary Encoder/Decoder</h2>
+          <input type="text" id="binary-input" placeholder="Enter text">
+          <button onclick="encodeBinary()">Encode</button>
+          <button onclick="decodeBinary()">Decode</button>
+          <p id="binary-output"></p>
+        </div>
 
-      <div id="Binary" class="tabcontent">
-        <h2>Binary Encoder/Decoder</h2>
-        <input type="text" id="binary-input" placeholder="Enter text">
-        <button onclick="encodeBinary()">Encode</button>
-        <button onclick="decodeBinary()">Decode</button>
-        <p id="binary-output"></p>
-      </div>
+        <div id="Caesar" class="tabcontent">
+          <h2>Caesar Cipher</h2>
+          <input type="text" id="caesar-input" placeholder="Enter text to encrypt/decrypt">
+          <input type="number" id="caesar-shift" value="3" placeholder="Shift value">
+          <button onclick="runCaesarCipher(true)">Encrypt</button>
+          <button onclick="runCaesarCipher(false)">Decrypt</button>
+          <p id="caesar-output"></p>
+        </div>
 
-      <div id="QRCode" class="tabcontent">
-        <h2>QR Code Generator</h2>
-        <input type="text" id="qr-input" placeholder="Enter text">
-        <button onclick="generateQRCode()">Generate</button>
-        <div id="qr-output"></div>
+        <div id="Hash" class="tabcontent">
+          <h2>Hash Generator</h2>
+          <input type="text" id="hash-input" placeholder="Enter text to hash">
+          <select id="hash-algo">
+            <option value="MD5">MD5</option>
+            <option value="SHA-1">SHA-1</option>
+            <option value="SHA-256">SHA-256</option>
+            <option value="SHA-512">SHA-512</option>
+          </select>
+          <button onclick="generateHash()">Generate Hash</button>
+          <p id="hash-output"></p>
+        </div>
+
+        <div id="Counter" class="tabcontent">
+          <h2>Character & Word Counter</h2>
+          <textarea id="counter-input" placeholder="Paste or type text here..." oninput="updateTextCount()"></textarea>
+          <p class="counter-output">
+            Characters: <span id="char-count">0</span> |
+            Words: <span id="word-count">0</span> |
+            Lines: <span id="line-count">0</span>
+          </p>
+        </div>
+
       </div>
+      <div id="home-bar" aria-label="Home Button"></div>
     </div>
   </div>
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
-<script src="script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const timeDisplay = document.getElementById('time-display');
+      function updateTime() {
+        const now = new Date();
+        timeDisplay.textContent = now.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+      }
+      updateTime();
+      setInterval(updateTime, 1000);
+
+      document.getElementById('home-bar').addEventListener('click', () => {
+        window.location.href = 'index.html';
+      });
+
+      document.querySelector('.tablinks').click();
+    });
+
+    function openTab(evt, tabName) {
+      let i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(tabName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+
+    function decodeBase64() {
+      const input = document.getElementById('base64-input').value;
+      const outputEl = document.getElementById('decoded-output');
+      try {
+        outputEl.textContent = atob(input);
+      } catch (e) {
+        outputEl.textContent = 'Invalid Base64 string. ' + e.message;
+      }
+    }
+
+    function encodeURL() {
+      document.getElementById('url-output').textContent = encodeURIComponent(document.getElementById('url-input').value);
+    }
+
+    function decodeURL() {
+      try {
+        document.getElementById('url-output').textContent = decodeURIComponent(document.getElementById('url-input').value);
+      } catch (e) {
+        document.getElementById('url-output').textContent = 'Invalid URL encoding. ' + e.message;
+      }
+    }
+
+    function encodeHex() {
+      const input = document.getElementById('hex-input').value;
+      let hex = '';
+      for (let i = 0; i < input.length; i++) {
+        hex += input.charCodeAt(i).toString(16).padStart(2, '0');
+      }
+      document.getElementById('hex-output').textContent = hex;
+    }
+
+    function decodeHex() {
+      const input = document.getElementById('hex-input').value.trim();
+      const outputEl = document.getElementById('hex-output');
+      let str = '';
+      if (input.length % 2 !== 0) {
+        outputEl.textContent = 'Invalid Hex string: Must have an even number of characters.';
+        return;
+      }
+      try {
+        for (let i = 0; i < input.length; i += 2) {
+          str += String.fromCharCode(parseInt(input.substr(i, 2), 16));
+        }
+        outputEl.textContent = str;
+      } catch (e) {
+        outputEl.textContent = 'Could not decode Hex string.';
+      }
+    }
+
+    const morseCodeMap = {
+      'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.', 'G': '--.', 'H': '....', 'I': '..', 'J': '.---', 'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---', 'P': '.--.', 'Q': '--.-', 'R': '.-.', 'S': '...', 'T': '-', 'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-', 'Y': '-.--', 'Z': '--..', '1': '.----', '2': '..---', '3': '...--', '4': '....-', '5': '.....', '6': '-....', '7': '--...', '8': '---..', '9': '----.', '0': '-----', ' ': '/', ',': '--..--', '.': '.-.-.-', '?': '..--..', ';': '-.-.-.', ':': '---...', "'": '.----.', '-': '-....-', '/': '-..-.', '(': '-.--.', ')': '-.--.-', '_': '..--.-'
+    };
+    const reverseMorseCodeMap = Object.fromEntries(Object.entries(morseCodeMap).map(([k, v]) => [v, k]));
+
+    function encodeMorse() {
+      const input = document.getElementById('morse-input').value.toUpperCase();
+      document.getElementById('morse-output').textContent = input.split('').map(c => morseCodeMap[c] || c).join(' ');
+    }
+
+    function decodeMorse() {
+      const input = document.getElementById('morse-input').value.trim();
+      document.getElementById('morse-output').textContent = input.split(' ').map(c => reverseMorseCodeMap[c] || c).join('');
+    }
+
+    function encodeBinary() {
+      const input = document.getElementById('binary-input').value;
+      document.getElementById('binary-output').textContent = input.split('').map(c => c.charCodeAt(0).toString(2).padStart(8, '0')).join(' ');
+    }
+
+    function decodeBinary() {
+      const input = document.getElementById('binary-input').value.trim();
+      try {
+        document.getElementById('binary-output').textContent = input.split(' ').map(b => String.fromCharCode(parseInt(b, 2))).join('');
+      } catch (e) {
+        document.getElementById('binary-output').textContent = 'Invalid Binary string. ' + e.message;
+      }
+    }
+
+    function runCaesarCipher(isEncrypt) {
+      const text = document.getElementById('caesar-input').value;
+      const shift = parseInt(document.getElementById('caesar-shift').value, 10);
+      let result = '';
+
+      for (let i = 0; i < text.length; i++) {
+        let char = text[i];
+        if (char.match(/[a-z]/i)) {
+          const code = text.charCodeAt(i);
+          let shiftedCode;
+          // Uppercase letters
+          if ((code >= 65) && (code <= 90)) {
+            shiftedCode = isEncrypt ? ((code - 65 + shift) % 26) + 65 : ((code - 65 - shift + 26) % 26) + 65;
+            // Lowercase letters
+          } else if ((code >= 97) && (code <= 122)) {
+            shiftedCode = isEncrypt ? ((code - 97 + shift) % 26) + 97 : ((code - 97 - shift + 26) % 26) + 97;
+          }
+          result += String.fromCharCode(shiftedCode);
+        } else {
+          result += char;
+        }
+      }
+      document.getElementById('caesar-output').textContent = result;
+    }
+
+    function generateHash() {
+      const text = document.getElementById('hash-input').value;
+      const algo = document.getElementById('hash-algo').value;
+      let hash;
+
+      switch (algo) {
+        case 'MD5': hash = CryptoJS.MD5(text); break;
+        case 'SHA-1': hash = CryptoJS.SHA1(text); break;
+        case 'SHA-256': hash = CryptoJS.SHA256(text); break;
+        case 'SHA-512': hash = CryptoJS.SHA512(text); break;
+        default: hash = 'Unknown algorithm';
+      }
+
+      document.getElementById('hash-output').textContent = hash.toString(CryptoJS.enc.Hex);
+    }
+
+    function updateTextCount() {
+      const text = document.getElementById('counter-input').value;
+      document.getElementById('char-count').textContent = text.length;
+      document.getElementById('word-count').textContent = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+      document.getElementById('line-count').textContent = text.split('\n').length;
+    }
+
+  </script>
 </body>
 </html>

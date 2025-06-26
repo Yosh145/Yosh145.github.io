@@ -1,44 +1,362 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<!--    portfolio on a tablet         -->
+<!--  by yash p. and gegel gemmani    -->
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio on an Tablet</title>
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio on a Tablet</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* style.css */
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background-color: #141414;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* bezel */
+    #tablet {
+      border: 16px solid black;
+      border-radius: 40px;
+      width: 800px;
+      height: 550px;
+      max-width: 95%;
+      margin: auto;
+background: #003366;
+background: linear-gradient(180deg, rgba(0, 51, 102, 1) 0%, rgba(92, 6, 50, 1) 100%);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* screen */
+    #screen {
+      width: 100%;
+      height: 100%;
+      background: url('https://images.unsplash.com/photo-1554189097-764a8a9a4afc?q=80&w=2574&auto=format&fit=crop') no-repeat center center/cover;
+      border-radius: 24px;
+      /* Inner radius */
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* status bar */
+    #status-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 10px 20px;
+      text-align: center;
+      color: white;
+      font-weight: 600;
+      font-size: 0.9em;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+      z-index: 10;
+    }
+
+    /* home screen app padding */
+    #home-screen {
+      padding: 45px 20px 20px;
+      /* Padding top for status bar */
+      box-sizing: border-box;
+      height: 100%;
+    }
+
+    .info-box {
+      background-color: rgba(0, 0, 0, 0.25);
+      /* fade */
+      -webkit-backdrop-filter: blur(15px);
+      backdrop-filter: blur(15px);
+      padding: 20px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      margin: 20px;
+      text-align: left;
+      color: #f0f0f0;
+    }
+
+    .info-box h2 {
+      color: #fff;
+      margin-top: 0;
+    }
+
+    /* grid */
+    .apps-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      justify-items: center;
+    }
+
+    /* app styles 1? */
+    .app {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      text-align: center;
+      width: 90px;
+    }
+
+    .app p {
+      color: white;
+      font-size: 0.9em;
+      margin-top: 8px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+      font-weight: 500;
+    }
+
+    .app-icon {
+      width: 70px;
+      height: 70px;
+      background-color: rgba(255, 255, 255, 0.98);
+      border-radius: 22.5%;
+      margin-bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2em;
+      color: #1d1d1f;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .app:hover .app-icon {
+      transform: scale(1.1);
+    }
+
+    /* folder app icon */
+    #folder-app .app-icon {
+      background-color: #d1d1d6;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      padding: 10px;
+      gap: 5px;
+      align-items: center;
+      justify-items: center;
+      box-sizing: border-box;
+    }
+
+    #folder-app .app-icon .fa-code {
+      font-size: 0.5em;
+      width: 28px;
+      height: 28px;
+      background-color: #fff;
+      border-radius: 22.5%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #333;
+    }
+
+
+    /* opened folder */
+    #folder-view {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at center, rgba(30, 30, 30, 0.3) 0%, rgba(30, 30, 30, 0.6) 100%);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      pointer-events: none;
+    }
+
+    #folder-view.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .folder-content {
+      background-color: rgba(210, 210, 215, 0.85);
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
+      border-radius: 30px;
+      padding: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+      gap: 20px;
+      transform: scale(0.8);
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    #folder-view.visible .folder-content {
+      transform: scale(1);
+    }
+
+    .folder-content .app p {
+      color: #1d1d1f;
+      text-shadow: none;
+    }
+
+
+    /* home bar  */
+    #home-bar {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150px;
+      height: 6px;
+      background-color: rgba(255, 255, 255, 0.7);
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.2s;
+      z-index: 110;
+    }
+
+    #home-bar:hover {
+      background-color: rgba(255, 255, 255, 1);
+    }
+
+    #home-bar:active {
+      transform: translateX(-50%) scale(0.95);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
 </head>
+
 <body>
-<div id ="phone">
-  <div id="home-screen">
-    <div class="info-box">
-      <h2>About me:</h2>
-      <p>My name is Yash Patel, I am a <b>Junior Computer Engineer</b> at the University of New Hampshire</p>
-      <p>Please feel free to check out more about my projects / my resume for more information about me! :) </p>
+  <div id="tablet">
+    <div id="screen">
+      <div id="status-bar">
+        <span id="time-display"></span>
+      </div>
+      <div id="home-screen">
+        <div class="info-box">
+          <h2>About me:</h2>
+          <p>My name is Yash Patel, I am a <b>Senior Computer Engineer</b> at the University of New Hampshire
+          </p>
+          <p>Please feel free to check out more about my projects / my resume for more information about me! :)</p>
+        </div>
+        <div class="apps-container">
+          <div class="app" id="folder-app">
+            <div class="app-icon">
+              <i class="fa-solid fa-code"></i>
+            </div>
+            <p>More</p>
+          </div>
+          <div class="app" onclick="redirectTo('github')">
+            <div class="app-icon"><i class="fa-brands fa-github"></i></div>
+            <p>GitHub</p>
+          </div>
+          <div class="app" onclick="redirectTo('resume')">
+            <div class="app-icon"><i class="fa-solid fa-file-lines"></i></div>
+            <p>Resume</p>
+          </div>
+          <div class="app" onclick="redirectTo('linkedin')">
+            <div class="app-icon"><i class="fa-brands fa-linkedin"></i></div>
+            <p>LinkedIn</p>
+          </div>
+        </div>
+      </div>
+      <div id="folder-view" class="hidden">
+        <div class="folder-content">
+          <div class="app" onclick="redirectTo('toolbox')">
+            <div class="app-icon"><i class="fa-solid fa-toolbox"></i></div>
+            <p>Toolbox</p>
+          </div>
+        </div>
+      </div>
+      <!-- On-screen home indicator -->
+      <div id="home-bar" aria-label="Home Button"></div>
     </div>
-    <div class="apps-container">
-      <div class="app" onclick="redirectTo('about')">
-        <div class="app-icon"><i class="fa-solid fa-ellipsis"></i></div>
-        <p>More</p>
-      </div>
-      <div class="app" onclick="redirectTo('github')">
-        <div class="app-icon"><i class="fa-brands fa-github"></i></div>
-        <p>GitHub</p>
-      </div>
-      <div class="app" onclick="redirectTo('resume')">
-        <div class="app-icon"><i class="fa-solid fa-file-lines"></i></div>
-        <p>Resume</p>
-      </div>
-      <div class="app" onclick="redirectTo('linkedin')">
-        <div class="app-icon"><i class="fa-brands fa-linkedin"></i></div>
-        <p>LinkedIn</p>
-      </div>
-      <div class="app" onclick="redirectTo('decoder')">
-        <div class="app-icon"><i class="fa-solid fa-code"></i></div>
-        <p>Decoders</p>
-      </div>
-    </div>
-  </div>
-</div>
-<script src="script.js"></script>
+    <script>
+      /* script.js */
+      document.addEventListener('DOMContentLoaded', () => {
+        const timeDisplay = document.getElementById('time-display');
+
+        function updateTime() {
+          const now = new Date();
+          // format time
+          const timeString = now.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+          timeDisplay.textContent = timeString;
+        }
+
+        // update every 1 sec
+        updateTime();
+        setInterval(updateTime, 1000);
+
+        const homeBar = document.getElementById('home-bar');
+        const folderApp = document.getElementById('folder-app');
+        const folderView = document.getElementById('folder-view');
+
+        function openFolder() {
+          folderView.classList.remove('hidden');
+          void folderView.offsetWidth;
+          folderView.classList.add('visible');
+        }
+
+        function closeFolder() {
+          folderView.classList.remove('visible');
+          folderView.addEventListener('transitionend', () => {
+            folderView.classList.add('hidden');
+          }, { once: true });
+        }
+
+        folderApp.addEventListener('click', (e) => {
+          e.stopPropagation(); // no click on other
+          openFolder();
+        });
+
+        homeBar.addEventListener('click', () => {
+          if (folderView.classList.contains('visible')) {
+            closeFolder();
+          }
+        });
+
+        folderView.addEventListener('click', (e) => {
+          if (e.target === folderView) {
+            closeFolder();
+          }
+        });
+
+        window.redirectTo = function (pageName) {
+          const links = {
+            github: { url: 'https://github.com/yosh145', external: true },
+            linkedin: { url:'https://www.linkedin.com/in/yash-patel-4202b8295', external: true },
+            resume: { url: 'resume.pdf', external: true },
+            toolbox: { url: 'toolbox.html', external: false }
+          };
+
+          const link = links[pageName];
+
+          if (link) {
+            if (link.external) {
+              window.open(link.url, '_blank');
+            } else {
+              window.location.href = link.url;
+            }
+          } else {
+            console.log(`Page '${pageName}' not found.`);
+          }
+        };
+      });
+    </script>
 </body>
 </html>
