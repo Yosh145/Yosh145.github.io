@@ -9,80 +9,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume Viewer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="shared.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.2.67/pdf.min.mjs" type="module"></script>
     <style>
-        body,
-        html {
-            margin: 0;
-            padding: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            background-color: #141414;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        #tablet {
-            border: 6px solid #1a1a1a;
-            border-radius: 44px;
-            width: 1024px;
-            height: 680px;
-            max-width: 95%;
-            margin: auto;
-            background: #000;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
+        /* screen — dark for PDF viewer */
         #screen {
-            width: 100%;
-            height: 100%;
             background-color: #1e1e1e;
-            border-radius: 38px;
-            overflow: hidden;
-            position: relative;
             display: flex;
             flex-direction: column;
         }
 
+        /* status bar — dark translucent */
         #status-bar {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 8px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             color: #eaeaea;
             background-color: rgba(30, 30, 30, 0.85);
             -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
-            font-weight: 600;
-            font-size: 0.8em;
-            z-index: 10;
-            box-sizing: border-box;
-        }
-
-        #status-bar .status-left {
-            flex: 1;
-        }
-
-        #status-bar .status-right {
-            flex: 1;
-            text-align: right;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 8px;
-        }
-
-        #status-bar .status-right i {
-            font-size: 0.95em;
         }
 
         /* toolbar */
@@ -185,29 +127,6 @@
             margin-bottom: 16px;
             color: #555;
         }
-
-        /* home bar */
-        #home-bar {
-            position: absolute;
-            bottom: 8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 134px;
-            height: 5px;
-            background-color: rgba(255, 255, 255, 0.35);
-            border-radius: 2.5px;
-            cursor: pointer;
-            transition: all 0.2s;
-            z-index: 110;
-        }
-
-        #home-bar:hover {
-            background-color: rgba(255, 255, 255, 0.7);
-        }
-
-        #home-bar:active {
-            transform: translateX(-50%) scale(0.95);
-        }
     </style>
 </head>
 
@@ -247,10 +166,12 @@
                 <canvas id="pdf-canvas"></canvas>
             </div>
 
+            <div id="home-zone"></div>
             <div id="home-bar" aria-label="Home Button"></div>
         </div>
     </div>
 
+    <script src="shared.js"></script>
     <script type="module">
         const pdfjsLib = await import('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.2.67/pdf.min.mjs');
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.2.67/pdf.worker.min.mjs';
@@ -312,19 +233,6 @@
         document.getElementById('btn-rotate').addEventListener('click', () => {
             currentRotation = (currentRotation + 90) % 360;
             if (pdfDoc) renderPage(currentPage);
-        });
-
-        // status bar clock
-        const timeDisplay = document.getElementById('time-display');
-        function updateTime() {
-            timeDisplay.textContent = new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
-        }
-        updateTime();
-        setInterval(updateTime, 1000);
-
-        // home bar
-        document.getElementById('home-bar').addEventListener('click', () => {
-            window.location.href = 'index.html';
         });
 
         // hide canvas until loaded
