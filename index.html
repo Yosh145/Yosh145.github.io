@@ -8,7 +8,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio on a Tablet</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
     /* style.css */
     body,
@@ -25,15 +25,14 @@
 
     /* bezel */
     #tablet {
-      border: 16px solid black;
-      border-radius: 40px;
-      width: 800px;
-      height: 550px;
+      border: 6px solid #1a1a1a;
+      border-radius: 44px;
+      width: 1024px;
+      height: 680px;
       max-width: 95%;
       margin: auto;
-background: #003366;
-background: linear-gradient(180deg, rgba(0, 51, 102, 1) 0%, rgba(92, 6, 50, 1) 100%);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      background: linear-gradient(180deg, #003366 0%, #5c0632 100%);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
       position: relative;
       display: flex;
       justify-content: center;
@@ -45,8 +44,7 @@ background: linear-gradient(180deg, rgba(0, 51, 102, 1) 0%, rgba(92, 6, 50, 1) 1
       width: 100%;
       height: 100%;
       background: url('https://images.unsplash.com/photo-1554189097-764a8a9a4afc?q=80&w=2574&auto=format&fit=crop') no-repeat center center/cover;
-      border-radius: 24px;
-      /* Inner radius */
+      border-radius: 38px;
       overflow: hidden;
       position: relative;
     }
@@ -57,13 +55,34 @@ background: linear-gradient(180deg, rgba(0, 51, 102, 1) 0%, rgba(92, 6, 50, 1) 1
       top: 0;
       left: 0;
       width: 100%;
-      padding: 10px 20px;
-      text-align: center;
+      padding: 8px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       color: white;
       font-weight: 600;
-      font-size: 0.9em;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+      font-size: 0.8em;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
       z-index: 10;
+      box-sizing: border-box;
+    }
+
+    #status-bar .status-left {
+      flex: 1;
+      padding-left: 10px;
+    }
+
+    #status-bar .status-right {
+      flex: 1;
+      text-align: right;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 8px;
+    }
+
+    #status-bar .status-right i {
+      font-size: 0.95em;
     }
 
     /* home screen app padding */
@@ -76,14 +95,13 @@ background: linear-gradient(180deg, rgba(0, 51, 102, 1) 0%, rgba(92, 6, 50, 1) 1
 
     .info-box {
       background-color: rgba(0, 0, 0, 0.25);
-      /* fade */
-      -webkit-backdrop-filter: blur(15px);
-      backdrop-filter: blur(15px);
-      padding: 20px;
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-      margin: 20px;
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
+      padding: 22px 26px;
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+      margin: 10px 20px;
       text-align: left;
       color: #f0f0f0;
     }
@@ -91,15 +109,22 @@ background: linear-gradient(180deg, rgba(0, 51, 102, 1) 0%, rgba(92, 6, 50, 1) 1
     .info-box h2 {
       color: #fff;
       margin-top: 0;
+      font-weight: 600;
+      font-size: 1.15em;
+    }
+
+    .info-box p {
+      font-size: 0.92em;
+      line-height: 1.45;
+      margin-bottom: 6px;
     }
 
     /* grid */
     .apps-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-      gap: 20px;
-      padding: 20px;
-      justify-items: center;
+      display: flex;
+      justify-content: center;
+      gap: 100px;
+      padding: 70px;
     }
 
     /* app styles 1? */
@@ -121,122 +146,60 @@ background: linear-gradient(180deg, rgba(0, 51, 102, 1) 0%, rgba(92, 6, 50, 1) 1
     }
 
     .app-icon {
-      width: 70px;
-      height: 70px;
-      background-color: rgba(255, 255, 255, 0.98);
+      width: 85px;
+      height: 85px;
       border-radius: 22.5%;
       margin-bottom: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2.2em;
-      color: #1d1d1f;
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      font-size: 2em;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
       transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .app-icon.github {
+      background-color: #1d1d1f;
+    }
+
+    .app-icon.resume {
+      background: linear-gradient(135deg, #007aff, #5856d6);
+    }
+
+    .app-icon.linkedin {
+      background-color: #0077b5;
+    }
+
+    .app-icon.toolbox {
+      background: linear-gradient(135deg, #ff9500, #ff6b00);
     }
 
     .app:hover .app-icon {
       transform: scale(1.1);
     }
 
-    /* folder app icon */
-    #folder-app .app-icon {
-      background-color: #d1d1d6;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      padding: 10px;
-      gap: 5px;
-      align-items: center;
-      justify-items: center;
-      box-sizing: border-box;
-    }
-
-    #folder-app .app-icon .fa-code {
-      font-size: 0.5em;
-      width: 28px;
-      height: 28px;
-      background-color: #fff;
-      border-radius: 22.5%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #333;
-    }
-
-
-    /* opened folder */
-    #folder-view {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 100;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: radial-gradient(circle at center, rgba(30, 30, 30, 0.3) 0%, rgba(30, 30, 30, 0.6) 100%);
-      -webkit-backdrop-filter: blur(10px);
-      backdrop-filter: blur(10px);
-      opacity: 0;
-      transition: opacity 0.3s ease-in-out;
-      pointer-events: none;
-    }
-
-    #folder-view.visible {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .folder-content {
-      background-color: rgba(210, 210, 215, 0.85);
-      -webkit-backdrop-filter: blur(20px);
-      backdrop-filter: blur(20px);
-      border-radius: 30px;
-      padding: 30px;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-      gap: 20px;
-      transform: scale(0.8);
-      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    #folder-view.visible .folder-content {
-      transform: scale(1);
-    }
-
-    .folder-content .app p {
-      color: #1d1d1f;
-      text-shadow: none;
-    }
-
-
     /* home bar  */
     #home-bar {
       position: absolute;
-      bottom: 15px;
+      bottom: 8px;
       left: 50%;
       transform: translateX(-50%);
-      width: 150px;
-      height: 6px;
-      background-color: rgba(255, 255, 255, 0.7);
-      border-radius: 3px;
+      width: 134px;
+      height: 5px;
+      background-color: rgba(255, 255, 255, 0.5);
+      border-radius: 2.5px;
       cursor: pointer;
       transition: all 0.2s;
       z-index: 110;
     }
 
     #home-bar:hover {
-      background-color: rgba(255, 255, 255, 1);
+      background-color: rgba(255, 255, 255, 0.8);
     }
 
     #home-bar:active {
       transform: translateX(-50%) scale(0.95);
-    }
-
-    .hidden {
-      display: none !important;
     }
   </style>
 </head>
@@ -245,40 +208,38 @@ background: linear-gradient(180deg, rgba(0, 51, 102, 1) 0%, rgba(92, 6, 50, 1) 1
   <div id="tablet">
     <div id="screen">
       <div id="status-bar">
-        <span id="time-display"></span>
+        <div class="status-left"><span id="time-display"></span></div>
+        <div class="status-right">
+          <i class="fa-solid fa-wifi"></i>
+          <i class="fa-solid fa-battery-full"></i>
+        </div>
       </div>
       <div id="home-screen">
         <div class="info-box">
-          <h2>About me:</h2>
-          <p>My name is Yash Patel, I am a <b>Senior Computer Engineer</b> at the University of New Hampshire
-          </p>
-          <p>Please feel free to check out more about my projects / my resume for more information about me!</p>
+          <h1>About me:</h1>
+          <p>My name is Yash Patel, I am a <b>Senior Computer Engineer</b> at the University of New Hampshire</p>
+          <p>I have experience in various programming languages and technologies. Some of my skills include:</p>
+          <ul>
+            <li><b>Programming Languages:</b> Rust, C, (System)Verilog, Python, Web (HTML, CSS, JS), sh/bash</li>
+            <li><b>Protocols:</b> I2C, SPI, UART, CAN‐BUS, 100BASE‐T1 (PHY‐C, PCS), TCP/IP, Ethernet, SSH</li>
+          </ul>
+          <p> Feel free to explore my portfolio and check out my projects and experience!</p>
         </div>
         <div class="apps-container">
           <div class="app" onclick="redirectTo('github')">
-            <div class="app-icon"><i class="fa-brands fa-github"></i></div>
+            <div class="app-icon github"><i class="fa-brands fa-github"></i></div>
             <p>GitHub</p>
           </div>
           <div class="app" onclick="redirectTo('resume')">
-            <div class="app-icon"><i class="fa-solid fa-file-lines"></i></div>
+            <div class="app-icon resume"><i class="fa-solid fa-file-lines"></i></div>
             <p>Resume</p>
           </div>
           <div class="app" onclick="redirectTo('linkedin')">
-            <div class="app-icon"><i class="fa-brands fa-linkedin"></i></div>
+            <div class="app-icon linkedin"><i class="fa-brands fa-linkedin-in"></i></div>
             <p>LinkedIn</p>
           </div>
-          <div class="app" id="folder-app">
-            <div class="app-icon">
-              <i class="fa-solid fa-code"></i>
-            </div>
-            <p>More</p>
-          </div>
-        </div>
-      </div>
-      <div id="folder-view" class="hidden">
-        <div class="folder-content">
           <div class="app" onclick="redirectTo('toolbox')">
-            <div class="app-icon"><i class="fa-solid fa-toolbox"></i></div>
+            <div class="app-icon toolbox"><i class="fa-solid fa-toolbox"></i></div>
             <p>Toolbox</p>
           </div>
         </div>
@@ -287,76 +248,36 @@ background: linear-gradient(180deg, rgba(0, 51, 102, 1) 0%, rgba(92, 6, 50, 1) 1
       <div id="home-bar" aria-label="Home Button"></div>
     </div>
     <script>
-      /* script.js */
       document.addEventListener('DOMContentLoaded', () => {
         const timeDisplay = document.getElementById('time-display');
 
         function updateTime() {
           const now = new Date();
-          // format time
-          const timeString = now.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
-          timeDisplay.textContent = timeString;
+          timeDisplay.textContent = now.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
         }
 
-        // update every 1 sec
         updateTime();
         setInterval(updateTime, 1000);
-
-        const homeBar = document.getElementById('home-bar');
-        const folderApp = document.getElementById('folder-app');
-        const folderView = document.getElementById('folder-view');
-
-        function openFolder() {
-          folderView.classList.remove('hidden');
-          void folderView.offsetWidth;
-          folderView.classList.add('visible');
-        }
-
-        function closeFolder() {
-          folderView.classList.remove('visible');
-          folderView.addEventListener('transitionend', () => {
-            folderView.classList.add('hidden');
-          }, { once: true });
-        }
-
-        folderApp.addEventListener('click', (e) => {
-          e.stopPropagation(); // no click on other
-          openFolder();
-        });
-
-        homeBar.addEventListener('click', () => {
-          if (folderView.classList.contains('visible')) {
-            closeFolder();
-          }
-        });
-
-        folderView.addEventListener('click', (e) => {
-          if (e.target === folderView) {
-            closeFolder();
-          }
-        });
 
         window.redirectTo = function (pageName) {
           const links = {
             github: { url: 'https://github.com/yosh145', external: true },
-            linkedin: { url:'https://www.linkedin.com/in/yash-patel-4202b8295', external: true },
-            resume: { url: 'resume.pdf', external: true },
+            linkedin: { url: 'https://www.linkedin.com/in/yash-patel-4202b8295', external: true },
+            resume: { url: 'resume.html', external: false },
             toolbox: { url: 'toolbox.html', external: false }
           };
 
           const link = links[pageName];
-
           if (link) {
             if (link.external) {
               window.open(link.url, '_blank');
             } else {
               window.location.href = link.url;
             }
-          } else {
-            console.log(`Page '${pageName}' not found.`);
           }
         };
       });
     </script>
 </body>
+
 </html>
